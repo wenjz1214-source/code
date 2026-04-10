@@ -1,0 +1,49 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.so
+*.egg
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Local environments and package caches
+conda_envs/
+conda_pkgs/
+venv*/
+mamba_root/
+
+# Data and experiment outputs
+data/
+logs/
+outputs/
+model_output/
+checkpoints/
+*.tfrecord
+*.tfrecord-*
+*.ckpt
+*.ckpt-*
+*.index
+*.data-00000-of-00001
+
+# Large local artifacts
+*.pdf
+*.doc
+*.docx
+*.zip
+
+# TrackFormer local artifacts
+code/trackformer/data/
+code/trackformer/logs/
+code/trackformer/models/
+code/trackformer/src/trackformer.egg-info/
+code/trackformer/src/trackformer/models/ops/build/
+code/trackformer/src/trackformer/models/ops/dist/
+
+# STEP local artifacts
+step_reproduce/**/__pycache__/
+step_reproduce/cocoapi/results/
