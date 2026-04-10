@@ -10,7 +10,7 @@ set -euo pipefail
 source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
-MOTSTEP_ROOT="/share_data/wenjingzhong/motchallenge_step"
+MOTSTEP_ROOT="<MOTCHALLENGE_STEP_ROOT>"
 RAW_DIR="${MOTSTEP_ROOT}/raw"
 IMG_DIR="${MOTSTEP_ROOT}/images"
 

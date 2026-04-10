@@ -1,9 +1,9 @@
 #!/bin/bash
 # 一键激活毕设环境
-# 使用方法: source /share_data/wenjingzhong/graduation_project/activate.sh
+# 使用方法: source <PROJECT_ROOT>/activate.sh
 
-export CONDARC="/share_data/wenjingzhong/graduation_project/.condarc"
-export PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+export CONDARC="<PROJECT_ROOT>/.condarc"
+export PROJECT_ROOT="<PROJECT_ROOT>"
 
 source ~/.bashrc 2>/dev/null || true
 conda activate "${PROJECT_ROOT}/conda_envs/trackformer_grad"

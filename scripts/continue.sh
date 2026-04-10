@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-P="/share_data/wenjingzhong/graduation_project"
+P="<PROJECT_ROOT>"
 V="${P}/venv_tf"
 L="${P}/logs/continue.log"
 

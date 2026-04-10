@@ -5,12 +5,12 @@
 # If automatic download is too slow, manually download from:
 #   https://www.cvlibs.net/datasets/kitti/eval_tracking.php
 #   -> "Download left color images of tracking data set (15 GB)"
-#   Place the zip at: /share_data/wenjingzhong/kitti_step/images/data_tracking_image_2.zip
+#   Place the zip at: <KITTI_STEP_ROOT>/images/data_tracking_image_2.zip
 #   Then re-run this script.
 
 set -e
 
-KITTI_STEP_ROOT="/share_data/wenjingzhong/kitti_step"
+KITTI_STEP_ROOT="<KITTI_STEP_ROOT>"
 IMAGE_DIR="${KITTI_STEP_ROOT}/images"
 
 mkdir -p "${IMAGE_DIR}"

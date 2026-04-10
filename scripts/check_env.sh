@@ -2,7 +2,7 @@
 # 一键检查毕设环境：Python、CUDA、MSDA 扩展、数据、权重是否就绪
 
 set -euo pipefail
-P="${GRAD_PROJECT_ROOT:-/share_data/wenjingzhong/graduation_project}"
+P="${GRAD_PROJECT_ROOT:-<PROJECT_ROOT>}"
 V="${P}/venv_tf"
 export PATH="${V}/bin:${PATH}"
 export MPLCONFIGDIR="${P}/logs/.matplotlib"

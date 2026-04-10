@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+PROJECT_ROOT="<PROJECT_ROOT>"
 ENV_PATH="${PROJECT_ROOT}/venv_trackformer"
 LOG="${PROJECT_ROOT}/logs/quick_setup.log"
 
@@ -19,7 +19,7 @@ echo "[STEP 1/5] 创建 venv..."
 if [ -f "${ENV_PATH}/bin/python" ]; then
     echo "  -> venv 已存在"
 else
-    /softhome/wenjingzhong/miniconda3/bin/python -m venv "${ENV_PATH}"
+    <MINICONDA_ROOT>/bin/python -m venv "${ENV_PATH}"
 fi
 source "${ENV_PATH}/bin/activate"
 pip install --upgrade pip -q 2>&1 | tail -1
@@ -138,7 +138,7 @@ for fn, t in [("exp_a.log","实验A: +ReID"),("exp_b.log","实验B: -ReID")]:
     r.append("```\n")
 r.append("## 分析\n- ReID降低ID Switch\n- Track Queries保持身份\n")
 with open(os.path.join(ed,"report.md"),"w") as f: f.write("\n".join(r))
-import shutil; shutil.copy2(os.path.join(ed,"report.md"), "/share_data/wenjingzhong/graduation_project/docs/experiment_report.md")
+import shutil; shutil.copy2(os.path.join(ed,"report.md"), "<PROJECT_ROOT>/docs/experiment_report.md")
 print(f"报告: {ed}/report.md")
 PYEOF
 

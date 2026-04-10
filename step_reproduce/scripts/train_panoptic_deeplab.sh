@@ -7,7 +7,7 @@ source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
 NUM_GPUS=${1:-1}
-KITTI_STEP_ROOT="/share_data/wenjingzhong/kitti_step"
+KITTI_STEP_ROOT="<KITTI_STEP_ROOT>"
 
 export EXPERIMENT_NAME="panoptic_deeplab_kitti_step"
 export INIT_CHECKPOINT="${KITTI_STEP_ROOT}/checkpoints/resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine/ckpt-60000"
@@ -29,7 +29,7 @@ echo "============================================"
 
 export PYTHONUNBUFFERED=1
 export TF_FORCE_GPU_ALLOW_GROWTH="${TF_FORCE_GPU_ALLOW_GROWTH:-true}"
-PYTHON_BIN="${STEP_PYTHON_BIN:-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python}"
+PYTHON_BIN="${STEP_PYTHON_BIN:-<STEP_PYTHON>}"
 "${PYTHON_BIN}" -u deeplab2/trainer/train.py \
     --config_file="${CONFIG_FILE}" \
     --mode=train \

@@ -1,7 +1,7 @@
 #!/bin/bash
 # 导出可复现的环境配置文件
 
-PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+PROJECT_ROOT="<PROJECT_ROOT>"
 ENV_PATH="${PROJECT_ROOT}/conda_envs/trackformer_grad"
 export CONDARC="${PROJECT_ROOT}/.condarc"
 

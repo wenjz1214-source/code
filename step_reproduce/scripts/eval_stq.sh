@@ -8,7 +8,7 @@ source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
 PREDICTIONS_DIR=${1}
-KITTI_STEP_ROOT="/share_data/wenjingzhong/kitti_step"
+KITTI_STEP_ROOT="<KITTI_STEP_ROOT>"
 GT_DIR="${KITTI_STEP_ROOT}/panoptic_maps/val"
 
 if [ -z "${PREDICTIONS_DIR}" ]; then

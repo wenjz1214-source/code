@@ -10,7 +10,7 @@ set -e
 source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
-KITTI_STEP_ROOT="/share_data/wenjingzhong/kitti_step"
+KITTI_STEP_ROOT="<KITTI_STEP_ROOT>"
 
 if [ -n "${1:-}" ]; then
   NUM_GPUS="$1"

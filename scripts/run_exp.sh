@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-P="${GRAD_PROJECT_ROOT:-/share_data/wenjingzhong/graduation_project}"
+P="${GRAD_PROJECT_ROOT:-<PROJECT_ROOT>}"
 V="${P}/venv_tf"
 LOG="${P}/logs/run_exp.log"
 LASTERR="${P}/logs/run_exp.last_error.txt"

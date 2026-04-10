@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+PROJECT_ROOT="<PROJECT_ROOT>"
 ENV_PATH="${PROJECT_ROOT}/venv_trackformer"
 LOG="${PROJECT_ROOT}/logs/run_all_v3.log"
 
@@ -21,7 +21,7 @@ source ~/.bashrc 2>/dev/null || true
 echo ""
 echo "[STEP 1/5] 创建 Python 虚拟环境..."
 
-CONDA_PYTHON="/softhome/wenjingzhong/miniconda3/bin/python"
+CONDA_PYTHON="<MINICONDA_ROOT>/bin/python"
 
 if [ ! -f "${ENV_PATH}/bin/python" ]; then
     echo "  用 conda base Python 创建 venv..."
@@ -198,7 +198,7 @@ import os, sys
 exp_dir = os.environ.get("EXP_DIR", "")
 if not exp_dir:
     import glob
-    dirs = sorted(glob.glob("/share_data/wenjingzhong/graduation_project/outputs/experiment_*"))
+    dirs = sorted(glob.glob("<PROJECT_ROOT>/outputs/experiment_*"))
     exp_dir = dirs[-1] if dirs else ""
 
 report = []
@@ -335,8 +335,8 @@ print(f"实验报告已保存: {report_path}")
 
 # Also save to project root for easy access
 import shutil
-shutil.copy2(report_path, "/share_data/wenjingzhong/graduation_project/docs/experiment_report.md")
-print(f"副本保存至: /share_data/wenjingzhong/graduation_project/docs/experiment_report.md")
+shutil.copy2(report_path, "<PROJECT_ROOT>/docs/experiment_report.md")
+print(f"副本保存至: <PROJECT_ROOT>/docs/experiment_report.md")
 PYEOF
 
 echo ""

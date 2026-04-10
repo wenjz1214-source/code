@@ -1,4 +1,4 @@
-#!/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python
+#!<STEP_PYTHON>
 """Create a MOTChallenge-STEP Motion-DeepLab init checkpoint.
 
 This combines:
@@ -19,9 +19,9 @@ from deeplab2.video.motion_deeplab import MotionDeepLab
 
 
 CITYSCAPES_TO_MOT = (1, 2, 8, 10, 11, 12, 18)
-SOURCE_PANOPTIC_CKPT = '/share_data/wenjingzhong/kitti_step/checkpoints/resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine/ckpt-60000'
-SOURCE_MOTION_FIRST_CKPT = '/share_data/wenjingzhong/kitti_step/checkpoints/resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine_netsurgery_first_layer/pretrained-1'
-OUTPUT_PREFIX = '/share_data/wenjingzhong/motchallenge_step/checkpoints/motion_deeplab_motchallenge_first_and_last/pretrained'
+SOURCE_PANOPTIC_CKPT = '<KITTI_STEP_ROOT>/checkpoints/resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine/ckpt-60000'
+SOURCE_MOTION_FIRST_CKPT = '<KITTI_STEP_ROOT>/checkpoints/resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine_netsurgery_first_layer/pretrained-1'
+OUTPUT_PREFIX = '<MOTCHALLENGE_STEP_ROOT>/checkpoints/motion_deeplab_motchallenge_first_and_last/pretrained'
 
 
 def _parse_proto(path: str) -> config_pb2.ExperimentOptions:

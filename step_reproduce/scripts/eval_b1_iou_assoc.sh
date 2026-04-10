@@ -7,7 +7,7 @@ set -euo pipefail
 source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
-KITTI_STEP_ROOT="/share_data/wenjingzhong/kitti_step"
+KITTI_STEP_ROOT="<KITTI_STEP_ROOT>"
 GT_DIR="${KITTI_STEP_ROOT}/panoptic_maps/val"
 PRED_ROOT="${1:-${KITTI_STEP_ROOT}/model_output/panoptic_deeplab_kitti_step_a16_safe/vis_ckpt30000/raw_panoptic}"
 OUTPUT_ROOT="${2:-${KITTI_STEP_ROOT}/model_output/b1_iou_assoc_kitti_step}"
@@ -21,7 +21,7 @@ echo "  Pred dir:   ${PRED_ROOT}"
 echo "  Output dir: ${OUTPUT_ROOT}"
 echo "============================================"
 
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python deeplab2/tracker/iou_tracker.py \
+<STEP_PYTHON> deeplab2/tracker/iou_tracker.py \
   --gt="${GT_DIR}" \
   --pred="${PRED_ROOT}" \
   --output="${OUTPUT_ROOT}" \

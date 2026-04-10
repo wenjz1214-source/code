@@ -31,7 +31,7 @@
 # Use a unique experiment_name for each experiment.
 experiment_name: "motion_deeplab_kitti_step"
 model_options {
-  initial_checkpoint: "/share_data/wenjingzhong/kitti_step/checkpoints/resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine_netsurgery_first_layer/pretrained-1"
+  initial_checkpoint: "<KITTI_STEP_ROOT>/checkpoints/resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine_netsurgery_first_layer/pretrained-1"
   backbone {
     name: "resnet50"
     output_stride: 32
@@ -126,7 +126,7 @@ trainer_options {
 train_dataset_options {
   dataset: "kitti_step"
   # Update the path to training set.
-  file_pattern: "/share_data/wenjingzhong/kitti_step/tfrecords/two_frames/train*.tfrecord"
+  file_pattern: "<KITTI_STEP_ROOT>/tfrecords/two_frames/train*.tfrecord"
   # Adjust the batch_size accordingly to better fit your GPU/TPU memory.
   # Also see Q1 in g3doc/fag.md.
   batch_size: 4
@@ -147,7 +147,7 @@ train_dataset_options {
 eval_dataset_options {
   dataset: "kitti_step"
   # Update the path to validation set.
-  file_pattern: "/share_data/wenjingzhong/kitti_step/tfrecords/two_frames/val*.tfrecord"
+  file_pattern: "<KITTI_STEP_ROOT>/tfrecords/two_frames/val*.tfrecord"
   batch_size: 1
   crop_size: 385
   crop_size: 1249

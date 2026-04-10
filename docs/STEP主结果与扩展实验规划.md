@@ -84,8 +84,8 @@
 当前正在进行的主训练：
 
 - tmux 会话：`step_motion_a16_safe`
-- 日志：`/share_data/wenjingzhong/kitti_step/model_output/train_logs/motion_deeplab_ampere_latest.log`
-- 模型目录：`/share_data/wenjingzhong/kitti_step/model_output/motion_deeplab_kitti_step_a16_safe`
+- 日志：`<KITTI_STEP_ROOT>/model_output/train_logs/motion_deeplab_ampere_latest.log`
+- 模型目录：`<KITTI_STEP_ROOT>/model_output/motion_deeplab_kitti_step_a16_safe`
 
 最新已观察到的训练状态：
 
@@ -141,7 +141,7 @@
 
 ```bash
 tmux attach -t step_motion_a16_safe
-tail -f /share_data/wenjingzhong/kitti_step/model_output/train_logs/motion_deeplab_ampere_latest.log
+tail -f <KITTI_STEP_ROOT>/model_output/train_logs/motion_deeplab_ampere_latest.log
 ```
 
 ## 8. 最终交付物

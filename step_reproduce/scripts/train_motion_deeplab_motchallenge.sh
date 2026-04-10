@@ -8,7 +8,7 @@ source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
 NUM_GPUS=${1:-1}
-MOTSTEP_ROOT="/share_data/wenjingzhong/motchallenge_step"
+MOTSTEP_ROOT="<MOTCHALLENGE_STEP_ROOT>"
 
 CONFIG_FILE="deeplab2/configs/motchallenge/motion_deeplab/resnet50_os32.textproto"
 MODEL_DIR="${MOT_MOTION_DEEPLAB_MODEL_DIR:-${MOTSTEP_ROOT}/model_output/motion_deeplab_motchallenge_step_a16_fixinit}"
@@ -18,7 +18,7 @@ mkdir -p "${MODEL_DIR}"
 export PYTHONUNBUFFERED=1
 export TF_FORCE_GPU_ALLOW_GROWTH="${TF_FORCE_GPU_ALLOW_GROWTH:-true}"
 
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python - <<'PY'
+<STEP_PYTHON> - <<'PY'
 from pathlib import Path
 from google.protobuf import text_format
 from deeplab2 import config_pb2
@@ -26,9 +26,9 @@ from deeplab2 import config_pb2
 config_path = Path('deeplab2/configs/motchallenge/motion_deeplab/resnet50_os32.textproto')
 text = config_path.read_text()
 text = text.replace('${EXPERIMENT_NAME}', 'motion_deeplab_motchallenge_step')
-text = text.replace('${INIT_CHECKPOINT}', '/share_data/wenjingzhong/motchallenge_step/checkpoints/motion_deeplab_motchallenge_first_and_last/pretrained-1')
-text = text.replace('${TRAIN_SET}', '/share_data/wenjingzhong/motchallenge_step/tfrecords/two_frames/train*.tfrecord')
-text = text.replace('${VAL_SET}', '/share_data/wenjingzhong/motchallenge_step/tfrecords/two_frames/val*.tfrecord')
+text = text.replace('${INIT_CHECKPOINT}', '<MOTCHALLENGE_STEP_ROOT>/checkpoints/motion_deeplab_motchallenge_first_and_last/pretrained-1')
+text = text.replace('${TRAIN_SET}', '<MOTCHALLENGE_STEP_ROOT>/tfrecords/two_frames/train*.tfrecord')
+text = text.replace('${VAL_SET}', '<MOTCHALLENGE_STEP_ROOT>/tfrecords/two_frames/val*.tfrecord')
 tmp = Path('/tmp/motchallenge_motion_resnet50_os32_local.textproto')
 cfg = config_pb2.ExperimentOptions()
 text_format.Parse(text, cfg)
@@ -56,7 +56,7 @@ echo "  Model dir:  ${MODEL_DIR}"
 echo "  GPUs:       ${NUM_GPUS}"
 echo "============================================"
 
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python -u deeplab2/trainer/train.py \
+<STEP_PYTHON> -u deeplab2/trainer/train.py \
   --config_file="${TMP_CONFIG}" \
   --mode=train \
   --model_dir="${MODEL_DIR}" \

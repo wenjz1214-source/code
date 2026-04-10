@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+PROJECT_ROOT="<PROJECT_ROOT>"
 CODE_DIR="${PROJECT_ROOT}/code/trackformer"
 OUTPUT_DIR="${PROJECT_ROOT}/outputs"
 export CONDARC="${PROJECT_ROOT}/.condarc"

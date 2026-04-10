@@ -7,7 +7,7 @@ set -euo pipefail
 source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
-MOTSTEP_ROOT="/share_data/wenjingzhong/motchallenge_step"
+MOTSTEP_ROOT="<MOTCHALLENGE_STEP_ROOT>"
 OUTPUT_DIR="${MOTSTEP_ROOT}/tfrecords"
 
 mkdir -p "${OUTPUT_DIR}"
@@ -23,12 +23,12 @@ for split in train test; do
 done
 
 echo "Building single-frame TFRecords ..."
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python deeplab2/data/build_step_data.py \
+<STEP_PYTHON> deeplab2/data/build_step_data.py \
   --step_root="${MOTSTEP_ROOT}" \
   --output_dir="${OUTPUT_DIR}"
 
 echo "Building two-frame TFRecords (for Motion-DeepLab) ..."
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python deeplab2/data/build_step_data.py \
+<STEP_PYTHON> deeplab2/data/build_step_data.py \
   --step_root="${MOTSTEP_ROOT}" \
   --output_dir="${OUTPUT_DIR}/two_frames" \
   --use_two_frames

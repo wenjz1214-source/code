@@ -7,7 +7,7 @@ source "$(dirname "$0")/setup_env.sh"
 cd "${PROJECT_ROOT}"
 
 MODEL_TYPE=${1:-"panoptic"}
-KITTI_STEP_ROOT="/share_data/wenjingzhong/kitti_step"
+KITTI_STEP_ROOT="<KITTI_STEP_ROOT>"
 
 if [ "${MODEL_TYPE}" = "panoptic" ]; then
     CONFIG_FILE="deeplab2/configs/kitti/panoptic_deeplab/resnet50_os32.textproto"

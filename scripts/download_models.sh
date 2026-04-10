@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-P="${GRAD_PROJECT_ROOT:-/share_data/wenjingzhong/graduation_project}"
+P="${GRAD_PROJECT_ROOT:-<PROJECT_ROOT>}"
 MODELS_DIR="${P}/models"
 URL="https://vision.in.tum.de/webshare/u/meinhard/trackformer_models_v1.zip"
 ZIP_NAME="trackformer_models_v1.zip"

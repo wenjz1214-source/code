@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-P="/share_data/wenjingzhong/graduation_project"
+P="<PROJECT_ROOT>"
 V="${P}/venv_tf"
 L="${P}/logs/go.log"
 mkdir -p "${P}/logs"
@@ -14,7 +14,7 @@ echo "=== $(date) START ==="
 # 1) Clean venv
 echo "STEP1: venv"
 rm -rf "${V}"
-/softhome/wenjingzhong/miniconda3/bin/python -m venv "${V}"
+<MINICONDA_ROOT>/bin/python -m venv "${V}"
 export PATH="${V}/bin:${PATH}"
 python -m pip install -q --upgrade pip
 echo "  python=$(python --version) pip=$(pip --version | cut -d' ' -f2)"

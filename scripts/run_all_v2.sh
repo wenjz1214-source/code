@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+PROJECT_ROOT="<PROJECT_ROOT>"
 ENV_PATH="${PROJECT_ROOT}/conda_envs/trackformer_v2"
 LOG="${PROJECT_ROOT}/logs/run_all_v2.log"
 export CONDARC="${PROJECT_ROOT}/.condarc"
@@ -199,7 +199,7 @@ import os, re
 exp_dir = os.environ.get("EXP_DIR", "")
 if not exp_dir:
     import glob
-    dirs = sorted(glob.glob("/share_data/wenjingzhong/graduation_project/outputs/experiment_*"))
+    dirs = sorted(glob.glob("<PROJECT_ROOT>/outputs/experiment_*"))
     exp_dir = dirs[-1] if dirs else ""
 
 report = []

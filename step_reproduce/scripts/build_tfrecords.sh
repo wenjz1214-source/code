@@ -9,7 +9,7 @@ source "$(dirname "$0")/setup_env.sh"
 
 cd "${PROJECT_ROOT}"
 
-KITTI_STEP_ROOT="/share_data/wenjingzhong/kitti_step"
+KITTI_STEP_ROOT="<KITTI_STEP_ROOT>"
 OUTPUT_DIR="${KITTI_STEP_ROOT}/tfrecords"
 
 mkdir -p "${OUTPUT_DIR}"

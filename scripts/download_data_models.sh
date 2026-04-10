@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+PROJECT_ROOT="<PROJECT_ROOT>"
 DATA_DIR="${PROJECT_ROOT}/data"
 MODEL_DIR="${PROJECT_ROOT}/models"
 

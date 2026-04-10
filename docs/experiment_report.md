@@ -39,13 +39,13 @@
 
 ### 3. MOTChallenge-STEP 当前进展
 
-- `MOTChallenge-STEP` 数据下载与目录整理已经完成，数据位于 `/share_data/wenjingzhong/motchallenge_step/`。
+- `MOTChallenge-STEP` 数据下载与目录整理已经完成，数据位于 `<MOTCHALLENGE_STEP_ROOT>/`。
 - `images/train/{0002,0009}` 与 `images/test/{0001,0007}` 已准备完成。
 - `panoptic_maps/train/...` 已解压完成。
 - `MOTChallenge-STEP` 的 `TFRecord` 构建脚本已经补充完成：`step_reproduce/scripts/build_motchallenge_tfrecords.sh`。
 - `MOTChallenge-STEP + B4 Motion-DeepLab` 旧训练线曾完成到 `ckpt-10000`，但验证结果退化严重，表现为 `STQ/PQ/AP_Mask` 基本为 0，因此判断该初始化方案无效。
 - 为此，已经额外构造了一个 `first+last layer` 的专用初始化 checkpoint：
-  `/share_data/wenjingzhong/motchallenge_step/checkpoints/motion_deeplab_motchallenge_first_and_last/pretrained-1`
+  `<MOTCHALLENGE_STEP_ROOT>/checkpoints/motion_deeplab_motchallenge_first_and_last/pretrained-1`
 - 基于该初始化，已重新启动一条更贴近论文训练策略的新线：
   - 输出目录：`motion_deeplab_motchallenge_step_a16_fixinit`
   - 训练步数：`2000`
@@ -269,7 +269,7 @@ Private Detection 效果更好，因为:
 ## 6. 项目文件结构
 
 ```
-/share_data/wenjingzhong/graduation_project/
+<PROJECT_ROOT>/
 ├── code/trackformer/          # TrackFormer 源码
 │   ├── src/track.py           # 跟踪推理入口
 │   ├── src/train.py           # 训练入口
@@ -300,8 +300,8 @@ Private Detection 效果更好，因为:
 ### 环境激活
 
 ```bash
-source /share_data/wenjingzhong/graduation_project/venv_tf/bin/activate
-cd /share_data/wenjingzhong/graduation_project/code/trackformer
+source <PROJECT_ROOT>/venv_tf/bin/activate
+cd <PROJECT_ROOT>/code/trackformer
 ```
 
 ### 运行跟踪 (有 ReID)
@@ -350,7 +350,7 @@ pip freeze > requirements_freeze.txt
 ## 9. 待完成事项
 
 - [ ] TUM 模型服务器恢复后下载预训练模型并运行实际实验
-- [ ] 运行命令: `bash /share_data/wenjingzhong/graduation_project/scripts/run_exp.sh`
+- [ ] 运行命令: `bash <PROJECT_ROOT>/scripts/run_exp.sh`
 - [ ] 对比有/无 ReID 的实际 MOT 指标
 - [ ] 可选: 在 MOTS20 上测试实例分割跟踪
 

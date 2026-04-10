@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="/share_data/wenjingzhong/graduation_project"
+PROJECT_ROOT="<PROJECT_ROOT>"
 MAMBA="${PROJECT_ROOT}/bin/micromamba"
 ENV_PATH="${PROJECT_ROOT}/env310"
 LOG="${PROJECT_ROOT}/logs/final_setup.log"
@@ -259,8 +259,8 @@ path = os.path.join(exp_dir, "experiment_report.md")
 with open(path, "w") as f: f.write("\n".join(report))
 print(f"报告: {path}")
 import shutil
-shutil.copy2(path, "/share_data/wenjingzhong/graduation_project/docs/experiment_report.md")
-print("副本: /share_data/wenjingzhong/graduation_project/docs/experiment_report.md")
+shutil.copy2(path, "<PROJECT_ROOT>/docs/experiment_report.md")
+print("副本: <PROJECT_ROOT>/docs/experiment_report.md")
 PYEOF
 
 echo ""
