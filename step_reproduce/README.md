@@ -9,6 +9,13 @@
 - Conda 环境: `step_reproduce` (Python 3.9 + TF 2.6 + CUDA 11.2)
 - GPU: **建议在 A100 / L40 / V100 等 Ampere 或更早架构上训练**（与 TF 2.6 预编译目标一致）
 
+本文档统一使用以下占位符：
+
+- `<PROJECT_ROOT>`：当前仓库根目录
+- `<STEP_ROOT>`：`<PROJECT_ROOT>/step_reproduce`
+- `<KITTI_STEP_ROOT>`：KITTI-STEP 数据根目录
+- `<STEP_PYTHON>`：STEP 环境对应的 Python
+
 ### 重要：为什么在 H100 上 loss 会变成 0？
 
 这不是「步数太少」或「学习率写错」导致的。
@@ -22,8 +29,8 @@
 ## 目录结构
 
 ```
-/share_data/wenjingzhong/
-├── graduation_project/step_reproduce/   # 代码
+<WORKSPACE_ROOT>/
+├── <PROJECT_ROOT>/step_reproduce/       # 代码
 │   ├── deeplab2/                        # DeepLab2 库
 │   ├── models/                          # TF models (含 Orbit)
 │   ├── cocoapi/                         # pycocotools
@@ -35,7 +42,7 @@
 │       ├── train_motion_deeplab.sh      # 训练双帧基线
 │       ├── eval_model.sh               # 评估模型
 │       └── eval_stq.sh                 # STQ 指标评估
-└── kitti_step/                          # 数据
+└── <KITTI_STEP_ROOT>/                   # 数据
     ├── images/                          # KITTI 图像 (需下载)
     │   ├── train/
     │   ├── val/
@@ -54,7 +61,7 @@
 从 KITTI 官网下载 tracking 图像:
 - 访问 https://www.cvlibs.net/datasets/kitti/eval_tracking.php
 - 注册/登录后下载 "left color images of tracking data set" (~15GB)
-- 保存到 `/share_data/wenjingzhong/kitti_step/images/data_tracking_image_2.zip`
+- 保存到 `<KITTI_STEP_ROOT>/images/data_tracking_image_2.zip`
 - 运行: `bash scripts/download_kitti_images.sh`
 
 ### 2. 生成 TFRecord
@@ -75,12 +82,12 @@ bash scripts/train_panoptic_deeplab.sh [NUM_GPUS]
 # 双帧基线 (Motion-DeepLab) - 论文核心方法
 # 不传 NUM_GPUS 时默认使用 nvidia-smi 可见的全部 GPU（MirroredStrategy，config 里 batch_size 为全局 batch，会按卡数均分）。
 # 若在 H100 上训出过 NaN，勿在同一 model_dir 续训；可另设目录，例如：
-#   MOTION_DEEPLAB_MODEL_DIR=/share_data/wenjingzhong/kitti_step/model_output/motion_deeplab_kitti_step_ampere bash scripts/train_motion_deeplab.sh
+#   MOTION_DEEPLAB_MODEL_DIR=<KITTI_STEP_ROOT>/model_output/motion_deeplab_kitti_step_ampere bash scripts/train_motion_deeplab.sh
 bash scripts/train_motion_deeplab.sh [NUM_GPUS]
 
 # 后台 + tmux + 按时间戳落盘日志（推荐长时间跑）
 bash scripts/run_motion_train_tmux.sh
-# 日志目录: /share_data/wenjingzhong/kitti_step/model_output/train_logs/（软链 motion_deeplab_ampere_latest.log）
+# 日志目录: <KITTI_STEP_ROOT>/model_output/train_logs/（软链 motion_deeplab_ampere_latest.log）
 ```
 
 ### 4. 评估

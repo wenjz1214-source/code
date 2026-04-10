@@ -116,10 +116,18 @@ graduation_project/
 - CUDA（TF build）：`11.2`
 - cuDNN（TF build）：`8.1`
 
+README 中统一使用以下占位符：
+
+- `<PROJECT_ROOT>`：当前仓库根目录
+- `<STEP_ROOT>`：`<PROJECT_ROOT>/step_reproduce`
+- `<STEP_PYTHON>`：STEP 环境对应的 Python
+- `<KITTI_STEP_ROOT>`：KITTI-STEP 数据根目录
+- `<MOTCHALLENGE_STEP_ROOT>`：MOTChallenge-STEP 数据根目录
+
 推荐直接使用固定 Python：
 
 ```bash
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python
+<STEP_PYTHON>
 ```
 
 ### 3.1 为什么不用 H100
@@ -136,33 +144,33 @@ graduation_project/
 
 ### 4.1 KITTI-STEP
 
-- 图像：`/share_data/wenjingzhong/kitti_step/images`
-- 标注：`/share_data/wenjingzhong/kitti_step/panoptic_maps`
-- TFRecord：`/share_data/wenjingzhong/kitti_step/tfrecords`
-- 预训练与初始化 checkpoint：`/share_data/wenjingzhong/kitti_step/checkpoints`
-- 训练输出：`/share_data/wenjingzhong/kitti_step/model_output`
+- 图像：`<KITTI_STEP_ROOT>/images`
+- 标注：`<KITTI_STEP_ROOT>/panoptic_maps`
+- TFRecord：`<KITTI_STEP_ROOT>/tfrecords`
+- 预训练与初始化 checkpoint：`<KITTI_STEP_ROOT>/checkpoints`
+- 训练输出：`<KITTI_STEP_ROOT>/model_output`
 
 ### 4.2 MOTChallenge-STEP
 
-- 图像：`/share_data/wenjingzhong/motchallenge_step/images`
-- 标注：`/share_data/wenjingzhong/motchallenge_step/panoptic_maps`
-- TFRecord：`/share_data/wenjingzhong/motchallenge_step/tfrecords`
-- 初始化 checkpoint：`/share_data/wenjingzhong/motchallenge_step/checkpoints`
-- 训练输出：`/share_data/wenjingzhong/motchallenge_step/model_output`
+- 图像：`<MOTCHALLENGE_STEP_ROOT>/images`
+- 标注：`<MOTCHALLENGE_STEP_ROOT>/panoptic_maps`
+- TFRecord：`<MOTCHALLENGE_STEP_ROOT>/tfrecords`
+- 初始化 checkpoint：`<MOTCHALLENGE_STEP_ROOT>/checkpoints`
+- 训练输出：`<MOTCHALLENGE_STEP_ROOT>/model_output`
 
 ## 5. 进入环境
 
 ### 5.1 推荐方式
 
 ```bash
-cd /share_data/wenjingzhong/graduation_project/step_reproduce
+cd <STEP_ROOT>
 source scripts/setup_env.sh
 ```
 
 然后直接调用固定 Python：
 
 ```bash
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python
+<STEP_PYTHON>
 ```
 
 ### 5.2 可选方式
@@ -184,7 +192,7 @@ conda activate step_reproduce
 以下命令默认在：
 
 ```bash
-cd /share_data/wenjingzhong/graduation_project/step_reproduce
+cd <STEP_ROOT>
 source scripts/setup_env.sh
 ```
 
@@ -204,7 +212,7 @@ bash scripts/train_panoptic_deeplab.sh 1
 
 默认输出目录：
 
-- `/share_data/wenjingzhong/kitti_step/model_output/panoptic_deeplab_kitti_step_a16_safe`
+- `<KITTI_STEP_ROOT>/model_output/panoptic_deeplab_kitti_step_a16_safe`
 
 ### 6.3 KITTI-STEP：训练 B4（Motion-DeepLab）
 
@@ -214,7 +222,7 @@ bash scripts/train_motion_deeplab.sh 1
 
 默认输出目录：
 
-- `/share_data/wenjingzhong/kitti_step/model_output/motion_deeplab_kitti_step_a16_safe`
+- `<KITTI_STEP_ROOT>/model_output/motion_deeplab_kitti_step_a16_safe`
 
 ### 6.4 KITTI-STEP：评估 B4
 
@@ -225,10 +233,10 @@ bash scripts/eval_model.sh motion
 或直接：
 
 ```bash
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python -u deeplab2/trainer/train.py \
+<STEP_PYTHON> -u deeplab2/trainer/train.py \
   --config_file=deeplab2/configs/kitti/motion_deeplab/resnet50_os32.textproto \
   --mode=eval \
-  --model_dir=/share_data/wenjingzhong/kitti_step/model_output/motion_deeplab_kitti_step_a16_safe \
+  --model_dir=<KITTI_STEP_ROOT>/model_output/motion_deeplab_kitti_step_a16_safe \
   --num_gpus=1
 ```
 
@@ -242,12 +250,12 @@ bash scripts/eval_b1_iou_assoc.sh
 
 默认脚本会读取：
 
-- 预测：`/share_data/wenjingzhong/kitti_step/model_output/panoptic_deeplab_kitti_step_a16_safe/vis_ckpt30000/raw_panoptic`
-- GT：`/share_data/wenjingzhong/kitti_step/panoptic_maps/val`
+- 预测：`<KITTI_STEP_ROOT>/model_output/panoptic_deeplab_kitti_step_a16_safe/vis_ckpt30000/raw_panoptic`
+- GT：`<KITTI_STEP_ROOT>/panoptic_maps/val`
 
 输出目录：
 
-- `/share_data/wenjingzhong/kitti_step/model_output/b1_iou_assoc_kitti_step`
+- `<KITTI_STEP_ROOT>/model_output/b1_iou_assoc_kitti_step`
 
 ### 6.6 MOTChallenge-STEP：下载与准备数据
 
@@ -268,17 +276,17 @@ bash scripts/train_motion_deeplab_motchallenge.sh 1
 
 默认输出目录：
 
-- `/share_data/wenjingzhong/motchallenge_step/model_output/motion_deeplab_motchallenge_step_a16_fixinit`
+- `<MOTCHALLENGE_STEP_ROOT>/model_output/motion_deeplab_motchallenge_step_a16_fixinit`
 
 ### 6.8 MOTChallenge-STEP：评估 B4
 
 ```bash
 export CUDA_VISIBLE_DEVICES=0
 
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python -u deeplab2/trainer/train.py \
+<STEP_PYTHON> -u deeplab2/trainer/train.py \
   --config_file=/tmp/motchallenge_motion_resnet50_os32_local.textproto \
   --mode=eval \
-  --model_dir=/share_data/wenjingzhong/motchallenge_step/model_output/motion_deeplab_motchallenge_step_a16_fixinit \
+  --model_dir=<MOTCHALLENGE_STEP_ROOT>/model_output/motion_deeplab_motchallenge_step_a16_fixinit \
   --num_gpus=1
 ```
 
@@ -287,7 +295,7 @@ export CUDA_VISIBLE_DEVICES=0
 ```bash
 export CUDA_VISIBLE_DEVICES=0
 
-/share_data/wenjingzhong/conda_envs/step_reproduce/bin/python -u deeplab2/trainer/train.py \
+<STEP_PYTHON> -u deeplab2/trainer/train.py \
   --config_file=/tmp/motchallenge_motion_resnet50_os32_eval10.textproto \
   --mode=eval \
   --model_dir=/tmp/mot_fixinit_evalfast \
@@ -300,7 +308,7 @@ export CUDA_VISIBLE_DEVICES=0
 
 当前最完整的可视化结果在：
 
-- `/share_data/wenjingzhong/motchallenge_step/model_output/motion_deeplab_motchallenge_step_a16_fixinit/motion_deeplab_motchallenge_step/vis`
+- `<MOTCHALLENGE_STEP_ROOT>/model_output/motion_deeplab_motchallenge_step_a16_fixinit/motion_deeplab_motchallenge_step/vis`
 
 包含：
 
@@ -315,12 +323,12 @@ export CUDA_VISIBLE_DEVICES=0
 
 最终跟踪结果：
 
-- `/share_data/wenjingzhong/kitti_step/model_output/b1_iou_assoc_kitti_step`
+- `<KITTI_STEP_ROOT>/model_output/b1_iou_assoc_kitti_step`
 
 ### 7.3 KITTI-STEP B1 前置单帧原始输出
 
-- `/share_data/wenjingzhong/kitti_step/model_output/panoptic_deeplab_kitti_step_a16_safe/vis_ckpt30000/raw_panoptic`
-- `/share_data/wenjingzhong/kitti_step/model_output/panoptic_deeplab_kitti_step_a16_safe/vis_ckpt30000/raw_semantic`
+- `<KITTI_STEP_ROOT>/model_output/panoptic_deeplab_kitti_step_a16_safe/vis_ckpt30000/raw_panoptic`
+- `<KITTI_STEP_ROOT>/model_output/panoptic_deeplab_kitti_step_a16_safe/vis_ckpt30000/raw_semantic`
 
 ## 8. 关键改动与已知问题
 
@@ -460,7 +468,7 @@ DeepLab2 文档参考值：
 
 需要重点检查：
 
-- `/share_data/wenjingzhong/...` 绝对路径
+- 本地绝对路径配置
 - `step_reproduce/scripts/setup_env.sh`
 - 数据根目录
 - checkpoint 根目录
